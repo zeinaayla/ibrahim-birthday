@@ -3,150 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy birthday Barhommii</title>
+
+    <title>Happy Birthday Barhommii 🤍</title>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
 
         :root {
-            --bg: #fdfaf8;
-            --text: #4a4542;
-            --accent: #d8a7b1;
-            --shadow: 0 4px 20px rgba(0,0,0,0.05);
+            --bg: #fdf8f7;
+            --white: #ffffff;
+            --text: #403737;
+            --soft: #8f7478;
+            --pink: #d9aeb5;
+            --pink-dark: #b98790;
+            --shadow: 0 15px 45px rgba(80, 50, 55, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg);
+            margin: 0;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(217,174,181,0.12), transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(217,174,181,0.12), transparent 25%),
+                var(--bg);
             color: var(--text);
             font-family: 'Tajawal', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
+            line-height: 1.9;
             overflow-x: hidden;
+        }
+
+        /* ---------------- FLOATING HEARTS ---------------- */
+
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -30px;
+            opacity: 0;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.35;
+            }
+
+            85% {
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.2) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .small-title {
+            font-size: 0.9rem;
+            color: var(--soft);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            animation: fadeUp 1.2s ease forwards;
+        }
+
+        h1 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2.7rem, 9vw, 5rem);
+            line-height: 1.15;
+            margin: 0;
+            font-weight: 700;
+            animation: fadeUp 1.4s ease forwards;
+        }
+
+        .hero-heart {
+            color: var(--pink-dark);
+            display: inline-block;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .date {
+            color: var(--soft);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin: 20px 0 5px;
+        }
+
+        .from {
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            margin-bottom: 35px;
+            color: #705d60;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 14px 26px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: 0.35s ease;
+        }
+
+        .music-btn {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--pink);
+        }
+
+        .gift-btn {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 8px 25px rgba(185,135,144,0.25);
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+        }
+
+        .gift-btn:hover {
+            background: var(--pink-dark);
+        }
+
+        .music-btn:hover {
+            background: rgba(217,174,181,0.12);
+        }
+
+        .scroll {
+            position: absolute;
+            bottom: 25px;
+            color: var(--soft);
+            font-size: 0.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ---------------- MESSAGE ---------------- */
+
+        #message-section {
+            display: none;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .letter {
+            width: min(680px, 100%);
+            background: rgba(255,255,255,0.88);
+            border: 1px solid rgba(217,174,181,0.35);
+            border-radius: 35px;
+            padding: clamp(25px, 6vw, 55px);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .letter::before {
+            content: "♡";
+            position: absolute;
+            top: 18px;
+            left: 25px;
+            font-size: 30px;
+            color: var(--pink);
+        }
+
+        .letter-title {
+            text-align: center;
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--pink-dark);
+            margin-bottom: 40px;
+        }
+
+        .letter p {
+            text-align: right;
+            margin: 0 0 25px;
+            font-size: 1.02rem;
+        }
+
+        .special {
+            text-align: center !important;
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem !important;
+            color: var(--pink-dark);
+            margin: 45px 0 !important;
+        }
+
+        /* ---------------- DIVIDER ---------------- */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 55px auto 25px;
+            color: var(--pink-dark);
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            width: 70px;
+            background: var(--pink);
+        }
+
+        /* ---------------- GALLERY ---------------- */
+
+        .gallery-section {
+            position: relative;
+            z-index: 1;
+            padding: 70px 20px;
             text-align: center;
         }
 
-        section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
-
-        .hero { min-height: 100vh; justify-content: center; }
-        h1 { font-size: 2.2rem; color: #3d3836; margin-bottom: 5px; }
-        .date { opacity: 0.7; margin-bottom: 30px; }
-
-        button {
-            background: #fff;
-            border: 1px solid var(--accent);
-            padding: 12px 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border-radius: 40px;
-            color: var(--text);
-            margin: 10px;
-            font-family: inherit;
+        .gallery-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.3rem;
+            margin-bottom: 8px;
         }
-        button:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
 
-        #message-section { display: none; max-width: 500px; opacity: 0; transition: opacity 1s ease; margin: 0 auto; padding: 20px;}
-        p { margin-bottom: 25px; }
+        .gallery-subtitle {
+            color: var(--soft);
+            margin-bottom: 35px;
+        }
 
-        .gallery { display: flex; flex-direction: column; gap: 20px; max-width: 500px; width: 100%; margin: 40px auto; padding: 0 20px;}
-        .gallery img { width: 100%; border-radius: 20px; box-shadow: var(--shadow); object-fit: cover; }
-        
-        .footer-final { padding-bottom: 80px; font-size: 1.2rem; }
+        .gallery {
+            width: min(850px, 100%);
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
 
-        .scroll-hint { position: absolute; bottom: 30px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+        .photo {
+            background: white;
+            padding: 9px;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            transition: 0.5s ease;
+        }
+
+        .photo:nth-child(2) {
+            transform: translateY(25px);
+        }
+
+        .photo:nth-child(3) {
+            transform: translateY(-10px);
+        }
+
+        .photo:nth-child(4) {
+            transform: translateY(15px);
+        }
+
+        .photo:hover {
+            transform: translateY(-8px) rotate(1deg);
+        }
+
+        .photo img {
+            display: block;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        /* ---------------- FINAL ---------------- */
+
+        .final {
+            min-height: 80vh;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-line {
+            width: 80px;
+            height: 1px;
+            background: var(--pink);
+            margin-bottom: 30px;
+        }
+
+        .final h2 {
+            font-family: 'Amiri', serif;
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            margin: 0 0 20px;
+        }
+
+        .final p {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--soft);
+            max-width: 550px;
+        }
+
+        .signature {
+            margin-top: 35px;
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            color: var(--pink-dark);
+        }
+
+        /* ---------------- ANIMATIONS ---------------- */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------------- MOBILE ---------------- */
+
+        @media (max-width: 650px) {
+
+            .hero {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.7rem;
+            }
+
+            .from {
+                font-size: 1.2rem;
+            }
+
+            .letter {
+                border-radius: 25px;
+                padding: 28px 22px;
+            }
+
+            .letter p {
+                font-size: 0.97rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .photo:nth-child(2),
+            .photo:nth-child(3),
+            .photo:nth-child(4) {
+                transform: none;
+            }
+
+            .photo img {
+                height: 330px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
+    <!-- القلوب المتحركة -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- البداية -->
     <section class="hero">
-        <h1>Happy birthday Barhommii 💖</h1>
-        <p class="date">21 Aug 2026</p>
-        <p>From you love</p>
-        <div>
-            <button onclick="window.open('https://youtu.be/FLDruk8W8RU?si=CZKrUxy4T0sZsd0z', '_blank')">🎵 اسمع الأغنية</button>
-            <button onclick="revealMessage()">🎁 افتح هديتك</button>
+
+        <div class="small-title">A LITTLE SOMETHING FOR YOU</div>
+
+        <h1>
+            Happy Birthday<br>
+            Barhommii <span class="hero-heart">♡</span>
+        </h1>
+
+        <div class="date">21 AUG 2026</div>
+
+        <div class="from">From your love, Zeina 🤍</div>
+
+        <div class="buttons">
+
+            <button class="music-btn"
+                onclick="window.open('https://youtu.be/FLDruk8W8RU?si=CZKrUxy4T0sZsd0z', '_blank')">
+                🎵 اسمع الأغنية
+            </button>
+
+            <button class="gift-btn" onclick="revealMessage()">
+                🎁 افتح هديتك
+            </button>
+
         </div>
-        <div class="scroll-hint">↓</div>
+
+        <div class="scroll">انزل شوي ↓</div>
+
     </section>
 
+
+    <!-- الرسالة -->
     <section id="message-section">
-        <p>ابراهيم حبيبي، صاحب الـ19 سنة 🥹🤍</p>
 
-        <p>كل عام وانت حبيبي، وكل عام وانت بخير يا أغلى شخص على قلبي، وكل عام وانت أقرب وأحب وأغلى إنسان عندي</p>
+        <div class="letter">
 
-        <p>اليوم إلك، واليوم بدي أذكرك كم انا بحبك، وقديش وجودك بحياتي يعنيلي أكثر مما ممكن تعرف</p>
+            <div class="letter-title">
+                إلى برهوم... 🤍
+            </div>
 
-        <p>يمكن هاي الفترة مش أحسن فترة بمر فيها، ويمكن الظروف ما سمحتلي أعملك عيد الميلاد اللي كنت أتمنى أعمله إلك، ولا أفرحك بالطريقة اللي كنت مخططة إلها ووعدتك فيها، وعنجد هاي الشغلة كثير مضايقتني🥺</p>
+            <p>ابراهيم حبيبي، صاحب الـ19 سنة 🥹🤍</p>
 
-        <p>كنت بتمنى أعملك شيء يليق فيك وبفرحتي فيك، وأخلي يومك مميز بالطريقة اللي بتستاهلها، بس للأسف الأيام هاي كانت أثقل مني شوي، وكثير أشياء مش قاعدة بتمشي زي ما انا بدي</p>
+            <p>كل عام وانت حبيبي، وكل عام وانت بخير يا أغلى شخص على قلبي، وكل عام وانت أقرب وأحب وأغلى إنسان عندي</p>
 
-        <p>فانا اسفة حبيبي إذا ما قدرت أعطيك اليوم كل اللي كنت أتمنى أعطيك إياه 🤍<br>
-        بس اعرف إنه حتى لو اللي قدرت أعمله هالفترة أقل، حبي إلك ما قلّ أبدًا</p>
+            <p>اليوم إلك، واليوم بدي أذكرك كم انا بحبك، وقديش وجودك بحياتي يعنيلي أكثر مما ممكن تعرف</p>
 
-        <p>يمكن ما قدرت أعمل كل شيء كان بنفسي، بس قلبي لسا مليان فيك<br>
-        ولسا انت أغلى شخص على قلبي<br>
-        ولسا وجودك بحياتي من الأشياء الي بتمسك فيها لما الدنيا كلها تكون ثقيلة علي</p>
+            <p>يمكن هاي الفترة مش أحسن فترة بمر فيها، ويمكن الظروف ما سمحتلي أعملك عيد الميلاد اللي كنت أتمنى أعمله إلك، ولا أفرحك بالطريقة اللي كنت مخططة إلها ووعدتك فيها، وعنجد هاي الشغلة كثير مضايقتني🥺</p>
 
-        <p>أنا بعمل كثير أشياء عشاني وعشان مستقبلي، بس في جزء كبير مني بعملها عشانك وعشان فرحتنا وسعادتنا مع بعض</p>
+            <p>كنت بتمنى أعملك شيء يليق فيك وبفرحتي فيك، وأخلي يومك مميز بالطريقة اللي بتستاهلها، بس للأسف الأيام هاي كانت أثقل مني شوي، وكثير أشياء مش قاعدة بتمشي زي ما انا بدي</p>
 
-        <p>19 سنة برهوم 🥹<br>
-        كبرت سنة جديدة، وأنا كل اللي بتمناه بهالسنة إنك تكون مرتاح ومبسوط، وتكون أقرب لكل شيء نفسك فيه<br>
-        أنا شفت تعبك وخوفك وطموحك، وكنت فخورة فيك من أيام التوجيهي، ولهسا هالفخر موجود، ورح اضل فخورة فيك بكل خطوة بتاخدها بحياتك 🤍</p>
+            <p>فانا اسفة حبيبي إذا ما قدرت أعطيك اليوم كل اللي كنت أتمنى أعطيك إياه 🤍<br>
+            بس اعرف إنه حتى لو اللي قدرت أعمله هالفترة أقل، حبي إلك ما قلّ أبدًا</p>
 
-        <p>وبدي تعرف وتتأكد وترسخ بعقلك إنك بالنسبة إلي مش بس إبراهيم اللي بحبه…<br>
-        انت الشخص اللي بتمنى أشوفه ناجح، مرتاح، مبسوط، ومحقق كل الأشياء اللي نفسه فيها<br>
-        بدي أشوفك أحلى مهندس، وأشوفك توصل لكل مكان حلمت فيه، وأكون من أول الناس الي تفرحلك وتفتخر فيك وتحكيلك “انا كنت عارفة إنك رح توصل لهون”</p>
+            <p>يمكن ما قدرت أعمل كل شيء كان بنفسي، بس قلبي لسا مليان فيك<br>
+            ولسا انت أغلى شخص على قلبي<br>
+            ولسا وجودك بحياتي من الأشياء الي بتمسك فيها لما الدنيا كلها تكون ثقيلة علي</p>
 
-        <p>عنجد بتمنى تضل دايمًا فخور بحالك، لأنك فعلًا شخص أنا فخورة فيه كثير</p>
+            <p>أنا بعمل كثير أشياء عشاني وعشان مستقبلي، بس في جزء كبير مني بعملها عشانك وعشان فرحتنا وسعادتنا مع بعض</p>
 
-        <p>وبدي أضل أشوفك معي بكل السنين وبكل العيد ميلادات وبكل الافراح وبكل الاحزان وبكل المناسبات<br>
-        بدي أشوفك يوم تخرجك، وأكون من أول الناس اللي تفتخر فيك<br>
-        وبدي تكون من أول الناس اللي تجي على تخرجي، وأشوف بعيونك الفخر إلي شفته من أول يوم انقبلت فيه بالطب وانا معك<br>
-        بدي نحقق كل إشي حلمنا عشانه ونسعاله بكل مافينا</p>
+            <p>19 سنة برهوم 🥹<br>
+            كبرت سنة جديدة، وأنا كل اللي بتمناه بهالسنة إنك تكون مرتاح ومبسوط، وتكون أقرب لكل شيء نفسك فيه<br>
+            أنا شفت تعبك وخوفك وطموحك، وكنت فخورة فيك من أيام التوجيهي، ولهسا هالفخر موجود، ورح اضل فخورة فيك بكل خطوة بتاخدها بحياتك 🤍</p>
 
-        <p>انت مش بس حبيبي…<br>
-        انت شخص أنا فعلًا بتمنى أشوفه بخير وسعادة ونجاح وراحة.</p>
+            <p>وبدي تعرف وتتأكد وترسخ بعقلك إنك بالنسبة إلي مش بس إبراهيم اللي بحبه…<br>
+            انت الشخص اللي بتمنى أشوفه ناجح، مرتاح، مبسوط، ومحقق كل الأشياء اللي نفسه فيها<br>
+            بدي أشوفك أحلى مهندس، وأشوفك توصل لكل مكان حلمت فيه، وأكون من أول الناس الي تفرحلك وتفتخر فيك وتحكيلك “انا كنت عارفة إنك رح توصل لهون”</p>
 
-        <p>وبدي اليوم، بعيد ميلادك، تضلك متذكر شغلة وحدة بس يمكن ما بحكيلك إياها كثير ويمكن قصرت فيها هالفترة بس انا كثير بحبك، كثير كثير بحبك، وممتنة لحبك الي 💖</p>
+            <p>عنجد بتمنى تضل دايمًا فخور بحالك، لأنك فعلًا شخص أنا فخورة فيه كثير</p>
 
-        <p>بحب وجودك، وبحب إني بعرف إن في شخص اسمه إبراهيم بحياتي<br>
-        بحب إنك الشخص اللي بقدر أفرح معه، وأحكي معه، وأشارك معه تفاصيل أيامي، بحب انك الشخص الوحيد اللي قاعدة بحكي معه بعقلي عن كل إلي بمر فيه هالفترة الصعبة</p>
+            <p>وبدي أضل أشوفك معي بكل السنين وبكل العيد ميلادات وبكل الافراح وبكل الاحزان وبكل المناسبات<br>
+            بدي أشوفك يوم تخرجك، وأكون من أول الناس اللي تفتخر فيك<br>
+            وبدي تكون من أول الناس اللي تجي على تخرجي، وأشوف بعيونك الفخر إلي شفته من أول يوم انقبلت فيه بالطب وانا معك<br>
+            بدي نحقق كل إشي حلمنا عشانه ونسعاله بكل مافينا</p>
 
-        <p>كل سنة وإنت بخير يا حبيبي وكل سنة وانت تكبر وانا معك بشوفك بتكبر❤️</p>
+            <p>انت مش بس حبيبي…<br>
+            انت شخص أنا فعلًا بتمنى أشوفه بخير وسعادة ونجاح وراحة.</p>
 
-        <p>بعرف انو يمكن يمكن أحلى هدية ما اقدر اعطيك اياها اليوم، بس حتضل ببالي اعيدلك هاليوم واسعدك فيه زي ما وعدتك</p>
+            <p class="special">
+                وبدي اليوم، بعيد ميلادك، تضلك متذكر شغلة وحدة بس... 🤍<br>
+                انا كثير بحبك، كثير كثير بحبك.
+            </p>
 
-        <p>عشان هيك ما بدي تزعل إني بعيدة وإني ما قدرت أعملك اشي🥺</p>
+            <p>وممتنة لحبك الي 💖</p>
 
-        <p>خلي هاليوم بس بداية سنة جديدة إلك، ولسا قدامنا كثير أيام حلوة، وكثير مناسبات، وكثير أشياء رح أعملها وأنا مبسوطة ومطمنة، وأفرح فيك فيها مثل ما انت بتستاهل</p>
+            <p>بحب وجودك، وبحب إني بعرف إن في شخص اسمه إبراهيم بحياتي<br>
+            بحب إنك الشخص اللي بقدر أفرح معه، وأحكي معه، وأشارك معه تفاصيل أيامي، بحب انك الشخص الوحيد اللي قاعدة بحكي معه بعقلي عن كل إلي بمر فيه هالفترة الصعبة</p>
 
-        <p>واهم اشي لا تنسى اني بحبك، وانو في شخص قلبه متعلق فيك وبتمنى لك كل الخير من كل قلبي</p>
+            <p>كل سنة وإنت بخير يا حبيبي وكل سنة وانت تكبر وانا معك بشوفك بتكبر❤️</p>
 
-        <p>كل عام وانت حبيبي<br>
-        كل عام وانت بخير<br>
-        وكل عام وأنا بشوفك تكبر، وتنجح، وتحقق الي نفسك فيه</p>
+            <p>بعرف انو يمكن يمكن أحلى هدية ما اقدر اعطيك اياها اليوم، بس حتضل ببالي اعيدلك هاليوم واسعدك فيه زي ما وعدتك</p>
+
+            <p>عشان هيك ما بدي تزعل إني بعيدة وإني ما قدرت أعملك اشي🥺</p>
+
+            <p>خلي هاليوم بس بداية سنة جديدة إلك، ولسا قدامنا كثير أيام حلوة، وكثير مناسبات، وكثير أشياء رح أعملها وأنا مبسوطة ومطمنة، وأفرح فيك فيها مثل ما انت بتستاهل</p>
+
+            <p>واهم اشي لا تنسى اني بحبك، وانو في شخص قلبه متعلق فيك وبتمنى لك كل الخير من كل قلبي</p>
+
+            <p class="special">
+                كل عام وانت حبيبي<br>
+                كل عام وانت بخير<br>
+                وكل عام وأنا بشوفك تكبر، وتنجح، وتحقق الي نفسك فيه 🤍
+            </p>
+
+        </div>
+
     </section>
 
-    <div class="gallery">
-<img src="IMG_1988.jpeg" alt="">
-<img src="eac7e68d-7a7f-4dce-a6f5-ec8299f2a181.jpeg" alt="">
-<img src="IMG_2557.jpeg" alt="">
-<img src="IMG_4372.jpeg" alt="">
-    </div>
 
-    <section class="footer-final">
-        <p>محبوبتك زينه<br>
-        في الدنيا والآخرة. ❤️</p>
+    <!-- الصور -->
+    <section class="gallery-section">
+
+        <div class="divider">ذكرياتنا</div>
+
+        <h2 class="gallery-title">أشياء بحب أحتفظ فيها 🤍</h2>
+
+        <p class="gallery-subtitle">
+            بعض اللحظات اللي إلها مكان خاص بقلبي
+        </p>
+
+        <div class="gallery">
+
+            <div class="photo">
+                <img src="IMG_1988.jpeg" alt="Memory 1">
+            </div>
+
+            <div class="photo">
+                <img src="eac7e68d-7a7f-4dce-a6f5-ec8299f2a181.jpeg" alt="Memory 2">
+            </div>
+
+            <div class="photo">
+                <img src="IMG_2557.jpeg" alt="Memory 3">
+            </div>
+
+            <div class="photo">
+                <img src="IMG_4372.jpeg" alt="Memory 4">
+            </div>
+
+        </div>
+
     </section>
+
+
+    <!-- النهاية -->
+    <section class="final">
+
+        <div class="final-line"></div>
+
+        <h2>وأخيرًا... 🤍</h2>
+
+        <p>
+            مهما حاولت أحكي، ومهما حاولت أكتب،
+            رح يضل في أشياء بقلبي أكبر من الكلام.
+        </p>
+
+        <p>
+            كل عام وانت بخير يا برهوم،
+            وإن شاء الله تكون هاي السنة بداية لكل الأشياء الحلوة اللي بتستاهلها.
+        </p>
+
+        <div class="signature">
+            محبوبتك زينه<br>
+            في الدنيا والآخرة ❤️
+        </div>
+
+    </section>
+
 
     <script>
-        function revealMessage() {
-            const msg = document.getElementById('message-section');
-            msg.style.display = 'block';
-            setTimeout(() => { msg.style.opacity = '1'; }, 50);
-            msg.scrollIntoView({ behavior: 'smooth' });
+
+        /* القلوب */
+
+        const hearts = document.getElementById("hearts");
+
+        const heartSymbols = ["♡", "🤍", "♡", "✦"];
+
+        for (let i = 0; i < 18; i++) {
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+
+            heart.innerHTML =
+                heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+            heart.style.left = Math.random() * 100 + "%";
+
+            heart.style.fontSize =
+                (10 + Math.random() * 12) + "px";
+
+            heart.style.animationDuration =
+                (10 + Math.random() * 12) + "s";
+
+            heart.style.animationDelay =
+                Math.random() * 12 + "s";
+
+            hearts.appendChild(heart);
         }
+
+
+        /* فتح الهدية */
+
+        function revealMessage() {
+
+            const message = document.getElementById("message-section");
+
+            message.style.display = "flex";
+
+            setTimeout(function () {
+                message.style.opacity = "1";
+            }, 100);
+
+            message.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
     </script>
+
 </body>
 </html>
