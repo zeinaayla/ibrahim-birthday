@@ -8,12 +8,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
+
         :root {
             --bg: #fdf9f7;
-            --bg2: #f8eeee;
             --text: #403735;
             --soft-text: #766b68;
             --accent: #c9949d;
@@ -36,6 +37,7 @@
                 radial-gradient(circle at 20% 10%, rgba(216,167,177,0.13), transparent 25%),
                 radial-gradient(circle at 80% 70%, rgba(216,167,177,0.10), transparent 25%),
                 var(--bg);
+
             color: var(--text);
             font-family: 'Tajawal', sans-serif;
             line-height: 1.9;
@@ -89,17 +91,19 @@
         .hero {
             min-height: 100vh;
             padding: 30px 20px;
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .tiny-heart {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             animation: pulse 2s infinite;
         }
@@ -116,11 +120,10 @@
 
         .hero h1 {
             font-family: 'Amiri', serif;
-            font-size: clamp(2.4rem, 8vw, 4.5rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             line-height: 1.2;
             margin: 0;
             font-weight: 700;
-            color: var(--text);
         }
 
         .subtitle {
@@ -145,21 +148,23 @@
 
         .buttons {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
             justify-content: center;
         }
 
         button {
             border: 1px solid var(--accent);
-            background: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.8);
+
             color: var(--text);
             font-family: 'Tajawal', sans-serif;
             font-size: 1rem;
-            padding: 13px 25px;
+
+            padding: 14px 30px;
             border-radius: 50px;
+
             cursor: pointer;
             transition: 0.35s ease;
+
             box-shadow: 0 5px 20px rgba(80,50,50,0.04);
         }
 
@@ -167,14 +172,15 @@
             background: var(--accent);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(180,120,130,0.22);
         }
 
         .scroll-down {
             position: absolute;
             bottom: 28px;
+
             color: var(--accent-dark);
             font-size: 1.3rem;
+
             animation: bounce 2s infinite;
         }
 
@@ -189,135 +195,255 @@
         }
 
         /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        #music-control {
+            display: none;
+
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+
+            width: 48px;
+            height: 48px;
+
+            padding: 0;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.9);
+
+            border: 1px solid var(--accent);
+
+            color: var(--accent-dark);
+
+            font-size: 1.2rem;
+
+            z-index: 100;
+
+            box-shadow: 0 8px 25px rgba(80,50,50,0.12);
+        }
+
+        #music-control.playing {
+            animation: musicPulse 1.5s infinite;
+        }
+
+        @keyframes musicPulse {
+
+            0%,100% {
+                box-shadow: 0 8px 25px rgba(80,50,50,0.12);
+            }
+
+            50% {
+                box-shadow: 0 8px 30px rgba(201,148,157,0.45);
+            }
+
+        }
+
+        /* =========================
            MESSAGE
         ========================= */
 
         #message-section {
             display: none;
+
             opacity: 0;
+
             max-width: 760px;
+
             margin: 0 auto;
+
             padding: 70px 18px;
+
             position: relative;
+
             z-index: 1;
+
             transition: opacity 1.2s ease;
         }
 
         .letter {
-            background: rgba(255,255,255,0.88);
+
+            background: rgba(255,255,255,0.9);
+
             border: 1px solid rgba(201,154,158,0.22);
+
             border-radius: 35px;
+
             padding: clamp(28px, 6vw, 60px);
+
             box-shadow: var(--shadow);
+
             position: relative;
         }
 
         .letter::before {
+
             content: "♡";
+
             position: absolute;
+
             top: 18px;
             left: 25px;
+
             color: var(--accent);
+
             font-size: 2rem;
+
             opacity: 0.45;
         }
 
         .letter-title {
+
             text-align: center;
+
             font-family: 'Amiri', serif;
+
             font-size: 2rem;
+
             margin-bottom: 35px;
+
             color: var(--accent-dark);
         }
 
         .letter p {
+
             text-align: right;
+
             margin: 0 0 27px;
+
             font-size: 1.03rem;
         }
 
         .special {
+
             text-align: center !important;
+
             font-family: 'Amiri', serif;
+
             font-size: 1.45rem !important;
+
             color: var(--accent-dark);
+
             margin: 45px 0 !important;
         }
 
         .divider {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
             margin: 45px 0;
+
             color: var(--accent);
         }
 
         .divider::before,
         .divider::after {
+
             content: "";
+
             height: 1px;
+
             flex: 1;
+
             background: rgba(201,154,158,0.35);
         }
 
         /* =========================
-           GALLERY
+           MEMORIES
         ========================= */
 
         .memories-section {
+
             position: relative;
+
             z-index: 1;
+
             padding: 80px 20px;
+
             text-align: center;
         }
 
         .memories-title {
+
             font-family: 'Amiri', serif;
+
             font-size: 2.3rem;
+
             margin: 0 0 8px;
         }
 
         .memories-subtitle {
+
             color: var(--soft-text);
+
             margin: 0 0 40px;
         }
 
         .gallery {
+
             max-width: 900px;
+
             margin: auto;
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 18px;
         }
 
         .photo {
-            position: relative;
+
             overflow: hidden;
+
             border-radius: 24px;
+
             background: white;
+
             box-shadow: var(--shadow);
+
+            position: relative;
         }
 
         .photo img {
+
             width: 100%;
+
             height: 330px;
+
             display: block;
+
             object-fit: cover;
+
             transition: transform 0.7s ease;
         }
 
         .photo:hover img {
+
             transform: scale(1.05);
         }
 
         .photo::after {
+
             content: "♡";
+
             position: absolute;
+
             bottom: 12px;
             left: 16px;
+
             color: white;
+
             font-size: 1.3rem;
+
             opacity: 0.8;
+
             text-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
 
@@ -326,38 +452,59 @@
         ========================= */
 
         .final {
+
             min-height: 75vh;
+
             padding: 100px 25px;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             justify-content: center;
+
             text-align: center;
+
             position: relative;
+
             z-index: 1;
         }
 
         .final-heart {
+
             font-size: 2.5rem;
+
             margin-bottom: 20px;
+
             animation: pulse 2s infinite;
         }
 
         .final h2 {
+
             font-family: 'Amiri', serif;
+
             font-size: clamp(2rem, 7vw, 3.5rem);
+
             margin: 0;
         }
 
         .final p {
+
             font-family: 'Amiri', serif;
+
             font-size: 1.5rem;
+
             color: var(--soft-text);
+
             line-height: 2;
         }
 
         .signature {
+
             color: var(--accent-dark) !important;
+
             margin-top: 25px !important;
         }
 
@@ -369,20 +516,6 @@
 
             .hero h1 {
                 font-size: 2.7rem;
-            }
-
-            .hero {
-                padding: 20px;
-            }
-
-            .buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 280px;
-            }
-
-            button {
-                width: 100%;
             }
 
             .letter {
@@ -409,21 +542,44 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             *,
             *::before,
             *::after {
+
                 animation: none !important;
+
                 transition: none !important;
+
                 scroll-behavior: auto !important;
             }
         }
+
     </style>
 </head>
 
 <body>
 
     <!-- Floating Hearts -->
+
     <div class="hearts" id="hearts"></div>
+
+
+    <!-- Music -->
+
+    <audio id="birthdayMusic" loop preload="auto">
+
+        <source src="birthday-song.mp3.mp3" type="audio/mpeg">
+
+    </audio>
+
+
+    <!-- Music Control -->
+
+    <button id="music-control" onclick="toggleMusic()">
+        🔊
+    </button>
+
 
     <!-- =========================
          HERO
@@ -431,21 +587,27 @@
 
     <section class="hero">
 
-        <div class="tiny-heart">🤍</div>
+        <div class="tiny-heart">
+            🤍
+        </div>
 
-        <h1>Happy Birthday<br>Barhommii 💖</h1>
+        <h1>
+            Happy Birthday
+            <br>
+            Barhommii 💖
+        </h1>
 
         <div class="hero-line"></div>
 
-        <p class="subtitle">إلى الشخص اللي إله مكان خاص بقلبي</p>
+        <p class="subtitle">
+            إلى الشخص اللي إله مكان خاص بقلبي
+        </p>
 
-        <p class="date">21 • AUG • 2026</p>
+        <p class="date">
+            21 • AUG • 2026
+        </p>
 
         <div class="buttons">
-
-            <button onclick="window.open('https://youtu.be/FLDruk8W8RU?si=CZKrUxy4T0sZsd0z', '_blank')">
-                🎵 اسمع الأغنية
-            </button>
 
             <button onclick="revealMessage()">
                 🎁 افتح هديتك
@@ -453,7 +615,9 @@
 
         </div>
 
-        <div class="scroll-down">↓</div>
+        <div class="scroll-down">
+            ↓
+        </div>
 
     </section>
 
@@ -505,7 +669,9 @@
                 حبي إلك ما قلّ أبدًا.
             </p>
 
-            <div class="divider">♡</div>
+            <div class="divider">
+                ♡
+            </div>
 
             <p>
                 يمكن ما قدرت أعمل كل شيء كان بنفسي،
@@ -543,7 +709,9 @@
                 وأشوفك توصل لكل مكان حلمت فيه،
                 وأكون من أول الناس الي تفرحلك وتفتخر فيك وتحكيلك:
                 <br>
-                <strong>“انا كنت عارفة إنك رح توصل لهون.”</strong>
+                <strong>
+                    “انا كنت عارفة إنك رح توصل لهون.”
+                </strong>
             </p>
 
             <p>
@@ -551,7 +719,9 @@
                 لأنك فعلًا شخص أنا فخورة فيه كثير.
             </p>
 
-            <div class="divider">♡</div>
+            <div class="divider">
+                ♡
+            </div>
 
             <p>
                 وبدي أضل أشوفك معي بكل السنين،
@@ -635,16 +805,24 @@
                 وبتمنى لك كل الخير من كل قلبي.
             </p>
 
-            <div class="divider">♡</div>
+            <div class="divider">
+                ♡
+            </div>
 
             <p class="special">
+
                 كل عام وانت حبيبي 🤍
+
                 <br>
+
                 كل عام وانت بخير
+
                 <br>
+
                 وكل عام وأنا بشوفك تكبر،
                 وتنجح،
                 وتحقق الي نفسك فيه.
+
             </p>
 
         </div>
@@ -711,7 +889,9 @@
 
     <section class="final">
 
-        <div class="final-heart">🤍</div>
+        <div class="final-heart">
+            🤍
+        </div>
 
         <h2>
             كل عام وانت بخير يا برهوم
@@ -738,20 +918,33 @@
            FLOATING HEARTS
         ========================= */
 
-        const heartsContainer = document.getElementById("hearts");
+        const heartsContainer =
+            document.getElementById("hearts");
 
-        const heartSymbols = ["♡", "🤍", "♡", "✦"];
+        const heartSymbols = [
+            "♡",
+            "🤍",
+            "♡",
+            "✦"
+        ];
 
         for (let i = 0; i < 18; i++) {
 
-            const heart = document.createElement("div");
+            const heart =
+                document.createElement("div");
 
             heart.className = "heart";
 
             heart.innerHTML =
-                heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heartSymbols[
+                    Math.floor(
+                        Math.random() *
+                        heartSymbols.length
+                    )
+                ];
 
-            heart.style.left = Math.random() * 100 + "%";
+            heart.style.left =
+                Math.random() * 100 + "%";
 
             heart.style.fontSize =
                 (10 + Math.random() * 12) + "px";
@@ -767,25 +960,109 @@
 
 
         /* =========================
-           OPEN LETTER
+           MUSIC
+        ========================= */
+
+        const music =
+            document.getElementById("birthdayMusic");
+
+        const musicControl =
+            document.getElementById("music-control");
+
+
+        function startMusic() {
+
+            music.volume = 0.55;
+
+            music.play()
+                .then(() => {
+
+                    musicControl.style.display =
+                        "block";
+
+                    musicControl.classList.add(
+                        "playing"
+                    );
+
+                    musicControl.innerHTML =
+                        "🔊";
+
+                })
+                .catch(() => {
+
+                    console.log(
+                        "Music could not start automatically."
+                    );
+
+                });
+
+        }
+
+
+        function toggleMusic() {
+
+            if (music.paused) {
+
+                music.play();
+
+                musicControl.innerHTML =
+                    "🔊";
+
+                musicControl.classList.add(
+                    "playing"
+                );
+
+            } else {
+
+                music.pause();
+
+                musicControl.innerHTML =
+                    "🔇";
+
+                musicControl.classList.remove(
+                    "playing"
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           OPEN GIFT
         ========================= */
 
         function revealMessage() {
 
-            const message = document.getElementById("message-section");
+            const message =
+                document.getElementById(
+                    "message-section"
+                );
 
-            message.style.display = "block";
+            message.style.display =
+                "block";
+
 
             setTimeout(() => {
-                message.style.opacity = "1";
+
+                message.style.opacity =
+                    "1";
+
             }, 100);
 
+
+            startMusic();
+
+
             setTimeout(() => {
+
                 message.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
                 });
-            }, 150);
+
+            }, 180);
+
         }
 
     </script>
